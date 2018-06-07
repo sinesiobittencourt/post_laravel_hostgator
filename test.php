@@ -1,1 +1,1 @@
-source /home/seudominio/.bashrc
+ curl -sS https://getcomposer.org/installer | php
