@@ -1,1 +1,1 @@
-php composer.phar create-project laravel/laravel --prefer-dist [nome-do-projeto]
+source /home/seudominio/.bashrc
