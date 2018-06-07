@@ -1,0 +1,44 @@
+//
+// Setup Commands
+//
+
+# Set version of PHP to 7
+#
+phpenv local 7.0
+#
+#
+# Disable XDebug
+#
+rm -f /home/rof/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+#
+#
+# Install dependencies through Composer using Github access token
+#
+composer config -g github-oauth.github.com $GITHUB_ACCESS_TOKEN
+composer install --prefer-dist --no-interaction
+#
+#
+# Install PHPUnit 5.*
+#
+composer global require phpunit/phpunit=5.*
+#
+#
+# Setup SQLite database
+# We are using https://github.com/SRLabs/laravel-testing-utilities. Change this to command or remove depending upon your needs.
+#
+php artisan utility:testdb
+
+//
+// Test Pipeline
+//
+
+phpunit
+
+//
+// Environment Variables
+//
+
+APP_ENV=testing
+DB_CONNECTION=testing
+COMPOSER_HOME=${HOME}/cache/composer
+GITHUB_ACCESS_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
